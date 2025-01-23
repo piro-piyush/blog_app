@@ -203,9 +203,6 @@ for update using ((select auth.uid()) = owner) with check (bucket_id = 'blog_ima
   - Realtime: Live updates and changes reflected in the app using Supabase Realtime.
   - Storage: Handling media uploads (e.g., images) with Supabase Storage.
 
-- **Authentication**:
-  - Supabase Auth (for user authentication)
-
 ## Contributing
 
 If you'd like to contribute to the Blog App, feel free to fork the repository and submit a pull request. Please ensure your code follows the project's style guide and includes tests for new features or bug fixes.
