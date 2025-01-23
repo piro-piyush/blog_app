@@ -3,14 +3,17 @@ import 'package:blog_app/core/utils/calculate_reading_time.dart';
 import 'package:blog_app/core/utils/format_date.dart';
 import 'package:blog_app/features/blog/domain/entities/blog.dart';
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shimmer/shimmer.dart';
 
 class BlogViewerPage extends StatelessWidget {
   static route(Blog blog) => MaterialPageRoute(
-    builder: (context) => BlogViewerPage(
-      blog: blog,
-    ),
-  );
+        builder: (context) => BlogViewerPage(
+          blog: blog,
+        ),
+      );
   final Blog blog;
+
   const BlogViewerPage({
     super.key,
     required this.blog,
@@ -54,7 +57,23 @@ class BlogViewerPage extends StatelessWidget {
                 const SizedBox(height: 20),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: Image.network(blog.imageUrl),
+                  child: CachedNetworkImage(
+                    imageUrl: blog.imageUrl,
+                    placeholder: (context, url) => Shimmer.fromColors(
+                      baseColor: Colors.grey[850]!,
+                      highlightColor: Colors.grey[700]!,
+                      child: Container(
+                        color: Colors.white,
+                        width: double.infinity,
+                        height: 200,
+                      ),
+                    ),
+                    errorWidget: (context, url, error) => const Icon(
+                      Icons.error,
+                      color: Colors.red,
+                    ),
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 const SizedBox(height: 20),
                 Text(
