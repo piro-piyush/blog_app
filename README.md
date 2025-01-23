@@ -208,4 +208,4 @@ If you'd like to contribute to the Blog App, feel free to fork the repository an
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details._
+This project is licensed under the MIT License - see the [LICENSE] file for details._
