@@ -5,14 +5,14 @@ import 'package:blog_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:blog_app/features/auth/presentation/pages/signup_page.dart';
 import 'package:blog_app/features/auth/presentation/widgets/auth_field.dart';
 import 'package:blog_app/features/auth/presentation/widgets/auth_gradient_button.dart';
+import 'package:blog_app/features/blog/presentation/pages/blog_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage extends StatefulWidget {
   static route() => MaterialPageRoute(
-        builder: (context) => const LoginPage(),
-      );
-
+    builder: (context) => const LoginPage(),
+  );
   const LoginPage({super.key});
 
   @override
@@ -40,14 +40,13 @@ class _LoginPageState extends State<LoginPage> {
           listener: (context, state) {
             if (state is AuthFailure) {
               showSnackBar(context, state.message);
+            } else if (state is AuthSuccess) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                BlogPage.route(),
+                    (route) => false,
+              );
             }
-            // else if (state is AuthSuccess) {
-            //   Navigator.pushAndRemoveUntil(
-            //     context,
-            //     BlogPage.route(),
-            //         (route) => false,
-            //   );
-            // }
           },
           builder: (context, state) {
             if (state is AuthLoading) {
@@ -75,19 +74,19 @@ class _LoginPageState extends State<LoginPage> {
                   AuthField(
                     hintText: 'Password',
                     controller: passwordController,
-                    isObsecureText: true,
+                    isObscureText: true,
                   ),
                   const SizedBox(height: 20),
                   AuthGradientButton(
-                    text: 'Sign in',
+                    buttonText: 'Sign in',
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
                         context.read<AuthBloc>().add(
-                              AuthLogin(
-                                email: emailController.text.trim(),
-                                password: passwordController.text.trim(),
-                              ),
-                            );
+                          AuthLogin(
+                            email: emailController.text.trim(),
+                            password: passwordController.text.trim(),
+                          ),
+                        );
                       }
                     },
                   ),
@@ -107,9 +106,9 @@ class _LoginPageState extends State<LoginPage> {
                                 .textTheme
                                 .titleMedium
                                 ?.copyWith(
-                                  color: AppPallete.gradient2,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                              color: AppPallete.gradient2,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),
