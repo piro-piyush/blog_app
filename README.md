@@ -1,5 +1,5 @@
 
-# Blog App
+_# Blog App
 
 Welcome to the **Blog App**, a simple yet powerful platform built with **Flutter** and **Supabase**. This app allows users to log in, sign up, create and share blogs, and read blogs from others. Users can add titles, content, choose topics, upload images, and filter blogs by topics.
 
@@ -31,13 +31,19 @@ Users can log in with their credentials on this page.
 
 Users can write and add new blogs by entering a title, content, and uploading images.
 
-![Add New Blog](assets/add_new_blog.png)
+![Add New Blog](assets/add_new_blog_page.png)
 
-### 4. **View Blog Page**
+### 4. **View All Blog**
+
+Users can view all blogs.
+
+![View All Blog](assets/blogs_pages.png)
+
+### 5. **View Blog Page**
 
 Users can view and read blogs posted by others.
 
-![View Blog Page](assets/viewer_blog_page.png)
+![View Blog Page](assets/blog_viewer_page.png)
 
 ## Installation
 
@@ -46,8 +52,8 @@ Follow the steps below to set up the Blog App locally:
 ### 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/blog-app.git
-cd blog-app
+git clone https://github.com/piro-piyush/blog_app.git
+cd blog_app
 ```
 
 ### 2. Install dependencies:
@@ -202,4 +208,4 @@ If you'd like to contribute to the Blog App, feel free to fork the repository an
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details._

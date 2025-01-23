@@ -6,27 +6,35 @@ Future<void> initDependencies() async {
   _initAuth();
   _initBlog();
 
+  final supabaseUrl = dotenv.env['SUPABASE_URL'];
+  final supabaseAnonKey = dotenv.env['SUPABASE_ANON_KEY'];
+
+  if (supabaseUrl == null || supabaseAnonKey == null) {
+    throw Exception('Missing Supabase configuration in .env file');
+  }
+
   final supabase = await Supabase.initialize(
-    url: AppSecrets.supabaseUrl,
-    anonKey: AppSecrets.supabaseAnonKey,
+    url: supabaseUrl,
+    anonKey: supabaseAnonKey,
   );
+
 
   Hive.defaultDirectory = (await getApplicationDocumentsDirectory()).path;
 
   serviceLocator.registerLazySingleton(() => supabase.client);
 
   serviceLocator.registerLazySingleton(
-        () => Hive.box(name: 'blogs'),
+    () => Hive.box(name: 'blogs'),
   );
 
   serviceLocator.registerFactory(() => InternetConnection());
 
   // core
   serviceLocator.registerLazySingleton(
-        () => AppUserCubit(),
+    () => AppUserCubit(),
   );
   serviceLocator.registerFactory<ConnectionChecker>(
-        () => ConnectionCheckerImpl(
+    () => ConnectionCheckerImpl(
       serviceLocator(),
     ),
   );
@@ -36,36 +44,36 @@ void _initAuth() {
   // Datasource
   serviceLocator
     ..registerFactory<AuthRemoteDataSource>(
-          () => AuthRemoteDataSourceImpl(
+      () => AuthRemoteDataSourceImpl(
         serviceLocator(),
       ),
     )
-  // Repository
+    // Repository
     ..registerFactory<AuthRepository>(
-          () => AuthRepositoryImpl(
+      () => AuthRepositoryImpl(
         serviceLocator(),
         serviceLocator(),
       ),
     )
-  // Usecases
+    // Usecases
     ..registerFactory(
-          () => UserSignUp(
-        serviceLocator(),
-      ),
-    )
-    ..registerFactory(
-          () => UserLogin(
+      () => UserSignUp(
         serviceLocator(),
       ),
     )
     ..registerFactory(
-          () => CurrentUser(
+      () => UserLogin(
         serviceLocator(),
       ),
     )
-  // Bloc
+    ..registerFactory(
+      () => CurrentUser(
+        serviceLocator(),
+      ),
+    )
+    // Bloc
     ..registerLazySingleton(
-          () => AuthBloc(
+      () => AuthBloc(
         userSignUp: serviceLocator(),
         userLogin: serviceLocator(),
         currentUser: serviceLocator(),
@@ -78,37 +86,37 @@ void _initBlog() {
   // Datasource
   serviceLocator
     ..registerFactory<BlogRemoteDataSource>(
-          () => BlogRemoteDataSourceImpl(
+      () => BlogRemoteDataSourceImpl(
         serviceLocator(),
       ),
     )
     ..registerFactory<BlogLocalDataSource>(
-          () => BlogLocalDataSourceImpl(
+      () => BlogLocalDataSourceImpl(
         serviceLocator(),
       ),
     )
-  // Repository
+    // Repository
     ..registerFactory<BlogRepository>(
-          () => BlogRepositoryImpl(
+      () => BlogRepositoryImpl(
         serviceLocator(),
         serviceLocator(),
         serviceLocator(),
       ),
     )
-  // Usecases
+    // Usecases
     ..registerFactory(
-          () => UploadBlog(
+      () => UploadBlog(
         serviceLocator(),
       ),
     )
     ..registerFactory(
-          () => GetAllBlogs(
+      () => GetAllBlogs(
         serviceLocator(),
       ),
     )
-  // Bloc
+    // Bloc
     ..registerLazySingleton(
-          () => BlogBloc(
+      () => BlogBloc(
         uploadBlog: serviceLocator(),
         getAllBlogs: serviceLocator(),
       ),
