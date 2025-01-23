@@ -1,3 +1,4 @@
+
 # Blog App
 
 Welcome to the **Blog App**, a simple yet powerful platform built with **Flutter** and **Supabase**. This app allows users to log in, sign up, create and share blogs, and read blogs from others. Users can add titles, content, choose topics, upload images, and filter blogs by topics.
@@ -18,31 +19,31 @@ Below are some screenshots of the app:
 
 Users can create a new account on this page.
 
-![Signup Page](assets/sign_up_page.png)
+<img src="assets/sign_up_page.png" alt="Signup Page" width="400"/>
 
 ### 2. **Signin Page**
 
 Users can log in with their credentials on this page.
 
-![Signin Page](assets/sign_in_page.png)
+<img src="assets/sign_in_page.png" alt="Signin Page" width="400"/>
 
 ### 3. **Add New Blog**
 
 Users can write and add new blogs by entering a title, content, and uploading images.
 
-![Add New Blog](assets/add_new_blog_page.png)
+<img src="assets/add_new_blog_page.png" alt="Add New Blog Page" width="400"/>
 
 ### 4. **View All Blog**
 
 Users can view all blogs.
 
-![View All Blog](assets/blogs_pages.png)
+<img src="assets/blogs_pages.png" alt="View All Blog" width="400"/>
 
 ### 5. **View Blog Page**
 
 Users can view and read blogs posted by others.
 
-![View Blog Page](assets/blog_viewer_page.png)
+<img src="assets/blog_viewer_page.png" alt="View Blog Page" width="400"/>
 
 ## Installation
 
@@ -180,7 +181,6 @@ create policy "Anyone can update their own avatar." on storage.objects
 for update using ((select auth.uid()) = owner) with check (bucket_id = 'blog_images');
 ```
 
-
 ## Usage
 
 - **Signup**: Navigate to the signup page to create a new account.
@@ -191,15 +191,15 @@ for update using ((select auth.uid()) = owner) with check (bucket_id = 'blog_ima
 ## Technologies Used
 
 - **Frontend**:
-    - Flutter (Dart)
-    - Image Upload (Using Supabase Storage or local storage)
+  - Flutter (Dart)
+  - Image Upload (Using Supabase Storage or local storage)
 
 - **Backend**:
-    - Supabase (Authentication, Database, and Storage)
-    - Supabase Realtime for updates
+  - Supabase (Authentication, Database, and Storage)
+  - Supabase Realtime for updates
 
 - **Authentication**:
-    - Supabase Auth (for user authentication)
+  - Supabase Auth (for user authentication)
 
 ## Contributing
 
@@ -207,4 +207,4 @@ If you'd like to contribute to the Blog App, feel free to fork the repository an
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE] file for details._
+This project is licensed under the MIT License - see the [LICENSE] file for details.
