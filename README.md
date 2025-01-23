@@ -191,12 +191,17 @@ for update using ((select auth.uid()) = owner) with check (bucket_id = 'blog_ima
 ## Technologies Used
 
 - **Frontend**:
-  - Flutter (Dart)
-  - Image Upload (Using Supabase Storage or local storage)
+  - Flutter: The core framework for building the mobile application.
+  - Dart: The programming language powering Flutter, enabling expressive and efficient code.
+  - BLoC (Business Logic Component): A state management solution for implementing business logic and ensuring reactive UI updates.
+  - Hive: A lightweight and high-performance local database solution for storing and retrieving data offline.
+  - GetIt: A service locator for managing dependencies and ensuring clean architecture with easy injection.
 
 - **Backend**:
-  - Supabase (Authentication, Database, and Storage)
-  - Supabase Realtime for updates
+  - Authentication: User registration, login, and session management using Supabase Auth
+  - Database: Managing and querying application data with Supabase's Postgres-powered database.
+  - Realtime: Live updates and changes reflected in the app using Supabase Realtime.
+  - Storage: Handling media uploads (e.g., images) with Supabase Storage.
 
 - **Authentication**:
   - Supabase Auth (for user authentication)
