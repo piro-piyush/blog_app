@@ -1,5 +1,4 @@
-
-_# Blog App
+# Blog App
 
 Welcome to the **Blog App**, a simple yet powerful platform built with **Flutter** and **Supabase**. This app allows users to log in, sign up, create and share blogs, and read blogs from others. Users can add titles, content, choose topics, upload images, and filter blogs by topics.
 
